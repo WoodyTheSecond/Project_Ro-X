@@ -182,6 +182,24 @@ async def getroles(ctx):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
+async def getscript(ctx):
+    author = ctx.message.author
+    if "Special" not in [y.name for y in author.roles]:
+        await client.send_file(author, "Project_Ro-X.lua")
+        embed = discord.Embed(
+            description = "I've sent you the script in a direct message"
+            colour = discord.Colour.green()
+        )
+        await client.say(embed=embed)
+    else:
+        embed = discord.Embed(
+            description = "You don't have access to that command",
+            colour = discord.Colour.red()
+        )
+
+        await client.say(embed=embed)
+
+@client.command(pass_context=True)
 async def whitelist(ctx, user: discord.Member, premium):
     author = ctx.message.author
     server = author.server
@@ -218,11 +236,12 @@ async def whitelist(ctx, user: discord.Member, premium):
                                 await client.add_roles(user, role)
 
                 embed = discord.Embed(
-                    description = "You have been whitelisted on Project Ro-X\nYour key is: `{}`\nYou can get the script in the script channel on the discord server".format(key),
+                    description = "You have been whitelisted on Project Ro-X\nYour key is: `{}`\nHere is the script".format(key),
                     colour = discord.Colour.green()
                 )
 
                 await client.send_message(user, embed=embed)
+                await client.send_file(user, "Project_Ro-X.lua")
 
                 embed = discord.Embed(
                     title = "Admin Command",
