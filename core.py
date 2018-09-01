@@ -28,7 +28,7 @@ async def on_member_join(member):
     server = member.server
     logschannel = server.get_channel(465158436557160468)
     howtobuychannel = server.get_channel(457895087104327680)
-    await client.send_message(logschannel, "Welcome, {} if you want to buy the script read {}".format(member.mention, howtobuychannel))
+    await client.send_message(logschannel, "Welcome, {} if you want to buy the script read {}".format(member.mention, howtobuychannel.mention))
 
 @client.command(pass_context=True)
 async def cmds(ctx):
