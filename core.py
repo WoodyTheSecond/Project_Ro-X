@@ -187,7 +187,7 @@ async def getscript(ctx):
     if "Special" not in [y.name for y in author.roles]:
         await client.send_file(author, "Project_Ro-X.lua")
         embed = discord.Embed(
-            description = "I've sent you the script in a direct message"
+            description = "I've sent you the script in a direct message",
             colour = discord.Colour.green()
         )
         await client.say(embed=embed)
