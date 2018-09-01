@@ -43,6 +43,7 @@ async def cmds(ctx):
     )
     embed.add_field(name="getkey", value="Get your key", inline=False)
     embed.add_field(name="getroles", value="Get your roles", inline=False)
+    embed.add_field(name="getscript", value="Get the script", inline=False)
     embed.add_field(name="botinfo", value="Shows the bot info", inline=False)
 
     if "457518915061284865" in [y.id for y in author.roles]:
