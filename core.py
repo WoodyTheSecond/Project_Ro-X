@@ -237,7 +237,7 @@ async def whitelist(ctx, user: discord.Member, premium):
                                 await client.add_roles(user, role)
 
                 embed = discord.Embed(
-                    description = "You have been whitelisted on Project Ro-X\nYour key is: `{}`\nHere is the script".format(key),
+                    description = "You have been whitelisted on Project Ro-X\nYour key is: `{}`\nIf you lose the script you can always use the command .getscript to get the script\nHere is the script".format(key),
                     colour = discord.Colour.green()
                 )
 
