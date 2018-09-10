@@ -70,7 +70,7 @@ async def getkey(ctx, user: discord.Member = None):
             newMessage = message.replace("error", "")
 
             embed = discord.Embed(
-                description = "{}, {}".format(author.mention, newMessage),
+                description = "{}".format(newMessage),
                 colour = discord.Colour.red()
             )
 
@@ -142,7 +142,7 @@ async def getroles(ctx):
         newMessage = message.replace("error", "")
 
         embed = discord.Embed(
-            description = "{} {}".format(author.mention, newMessage),
+            description = "{}".format(newMessage),
             colour = discord.Colour.red()
         )
 
