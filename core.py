@@ -209,11 +209,11 @@ async def getscript(ctx):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def whitelist(ctx, user: discord.Member, premium):
+async def whitelist(ctx, user: discord.Member = None, premium = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if user and premium:
+        if user != None and premium != None:
             key = "".join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
             fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=whitelist&targetuserid={}&key={}&premium={}".format(author.id, user.id, key, premium))
@@ -277,11 +277,11 @@ async def whitelist(ctx, user: discord.Member, premium):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def remove(ctx, user: discord.Member):
+async def remove(ctx, user: discord.Member = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if user:
+        if user != None:
             fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, user.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
@@ -341,11 +341,11 @@ async def remove(ctx, user: discord.Member):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def removeid(ctx, id):
+async def removeid(ctx, id = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if id:
+        if id != None:
             fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
@@ -419,11 +419,11 @@ async def removeid(ctx, id):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def removekey(ctx, key):
+async def removekey(ctx, key = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if key:
+        if key != None:
             fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=removekey&targetkey={}".format(author.id, key))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
@@ -463,11 +463,11 @@ async def removekey(ctx, key):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def premium(ctx, user: discord.Member, status):
+async def premium(ctx, user: discord.Member = None, status = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if user and status:
+        if user != None and status != None:
             message = None
             if status == "true":
                 fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=givepremium&targetuserid={}".format(author.id, user.id))
@@ -526,11 +526,11 @@ async def premium(ctx, user: discord.Member, status):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def blacklist(ctx, user: discord.Member, status):
+async def blacklist(ctx, user: discord.Member = None, status = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if user and status:
+        if user != None and status != None:
             message = None
             if status == "true":
                 fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, user.id))
@@ -633,11 +633,11 @@ async def blacklist(ctx, user: discord.Member, status):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def blacklistid(ctx, id, status):
+async def blacklistid(ctx, id = None, status = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if id and status:
+        if id != None and status != None:
             message = None
             if status == "true":
                 fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, id))
@@ -771,11 +771,11 @@ async def blacklistid(ctx, id, status):
         await client.say(embed=embed)
 
 @client.command(pass_context=True)
-async def info(ctx, user: discord.Member):
+async def info(ctx, user: discord.Member = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
-        if user:
+        if user != None:
             fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getinfo&targetuserid={}".format(author.id, user.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
