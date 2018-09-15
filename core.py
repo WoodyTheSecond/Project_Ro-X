@@ -813,7 +813,7 @@ async def info(ctx, user: discord.Member = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                colour = discord.Colour.darkred()
             )
 
             await client.say(embed=embed)
