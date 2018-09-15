@@ -126,7 +126,7 @@ async def getkey(ctx, user: discord.Member = None):
             else:
                 embed = discord.Embed(
                     title = "Error",
-                    description = "Invalid user",
+                    description = "The input text has too few parameters",
                     colour = discord.Colour.red()
                 )
 
@@ -263,7 +263,7 @@ async def whitelist(ctx, user: discord.Member = None, premium = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments!",
+                description = "The input text has too few parameters!",
                 colour = discord.Colour.red()
             )
 
@@ -327,7 +327,7 @@ async def remove(ctx, user: discord.Member = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Invalid user",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -405,7 +405,7 @@ async def removeid(ctx, id = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -449,7 +449,7 @@ async def removekey(ctx, key = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -512,7 +512,7 @@ async def premium(ctx, user: discord.Member = None, status = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -619,7 +619,7 @@ async def blacklist(ctx, user: discord.Member = None, status = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -757,7 +757,7 @@ async def blacklistid(ctx, id = None, status = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Missing arguments",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
@@ -812,7 +812,7 @@ async def info(ctx, user: discord.Member = None):
         else:
             embed = discord.Embed(
                 title = "Error",
-                description = "Invalid user",
+                description = "The input text has too few parameters",
                 colour = discord.Colour.red()
             )
 
