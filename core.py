@@ -38,7 +38,7 @@ async def cmds(ctx):
     embed = discord.Embed(
         title = "Commands",
         description = "",
-        colour = discord.Colour.blue()
+        color = discord.Color.blue()
     )
     embed.add_field(name="getkey", value="Get your key", inline=False)
     embed.add_field(name="getroles", value="Get your roles", inline=False)
@@ -71,7 +71,7 @@ async def getkey(ctx, user: discord.Member = None):
 
             embed = discord.Embed(
                 description = "{}".format(newMessage),
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
@@ -79,14 +79,14 @@ async def getkey(ctx, user: discord.Member = None):
             embed = discord.Embed(
                 title = "Your key",
                 description = message,
-                colour = discord.Colour.green()
+                color = discord.Color.green()
             )
 
             await client.send_message(author, embed=embed)
 
             embed = discord.Embed(
                 description = "I have sent you a direct message with your key",
-                colour = discord.Colour.green()
+                color = discord.Color.green()
             )
 
             await client.say(embed=embed)
@@ -102,7 +102,7 @@ async def getkey(ctx, user: discord.Member = None):
 
                     embed = discord.Embed(
                         description = "The user {} {}".format(user.mention, newMessage),
-                        colour = discord.Colour.red()
+                        color = discord.Color.red()
                     )
 
                     await client.say(embed=embed)
@@ -111,7 +111,7 @@ async def getkey(ctx, user: discord.Member = None):
                         embed = discord.Embed(
                             title = "{} Key".format(user),
                             description = message,
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.send_message(author, embed=embed)
@@ -119,7 +119,7 @@ async def getkey(ctx, user: discord.Member = None):
                         embed = discord.Embed(
                             title = "Admin Command",
                             description = "I have sent you a direct message with {}'s key".format(user.mention),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -127,14 +127,14 @@ async def getkey(ctx, user: discord.Member = None):
                 embed = discord.Embed(
                     title = "Error",
                     description = "The input text has too few parameters",
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
         else:
             embed = discord.Embed(
                 description = "You don't have access to that command",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
@@ -152,7 +152,7 @@ async def getroles(ctx):
 
         embed = discord.Embed(
             description = "{}".format(newMessage),
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -185,7 +185,7 @@ async def getroles(ctx):
 
         embed = discord.Embed(
             description = "You have been gives your roles",
-            colour = discord.Colour.green()
+            color = discord.Color.green()
         )
 
         await client.say(embed=embed)
@@ -197,13 +197,13 @@ async def getscript(ctx):
         await client.send_file(author, "Project_Ro-X.lua")
         embed = discord.Embed(
             description = "I've sent you the script in a direct message",
-            colour = discord.Colour.green()
+            color = discord.Color.green()
         )
         await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -225,7 +225,7 @@ async def whitelist(ctx, user: discord.Member = None, premium = None):
 
                 embed = discord.Embed(
                     description = "The user {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -247,7 +247,7 @@ async def whitelist(ctx, user: discord.Member = None, premium = None):
 
                     embed = discord.Embed(
                         description = "You have been whitelisted on Project Ro-X\nYour key is: `{}`\nIf you lose the script you can always use the command .getscript to get the script\nHere is the script".format(key),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.send_message(user, embed=embed)
@@ -256,7 +256,7 @@ async def whitelist(ctx, user: discord.Member = None, premium = None):
                     embed = discord.Embed(
                         title = "Admin Command",
                         description = "{} {}".format(user.mention, message),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.say(embed=embed)
@@ -264,14 +264,14 @@ async def whitelist(ctx, user: discord.Member = None, premium = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters!",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -291,7 +291,7 @@ async def remove(ctx, user: discord.Member = None):
 
                 embed = discord.Embed(
                     description = "The user {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -312,7 +312,7 @@ async def remove(ctx, user: discord.Member = None):
 
                     embed = discord.Embed(
                         description = "Your key has been removed on Project Ro-X\nIf you think this is a mistake contact {}".format(server.get_member(457516809940107264).mention),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.send_message(user, embed=embed)
@@ -320,7 +320,7 @@ async def remove(ctx, user: discord.Member = None):
                     embed = discord.Embed(
                         title = "Admin Command",
                         description = "{} {}".format(user.mention, message),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.say(embed=embed)
@@ -328,14 +328,14 @@ async def remove(ctx, user: discord.Member = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -355,7 +355,7 @@ async def removeid(ctx, id = None):
 
                 embed = discord.Embed(
                     description = "The user with the id {} {}".format(id, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -370,7 +370,7 @@ async def removeid(ctx, id = None):
                         embed = discord.Embed(
                             title = "Admin Command",
                             description = "The user with the id {} {}".format(id, message),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -390,7 +390,7 @@ async def removeid(ctx, id = None):
 
                         embed = discord.Embed(
                             description = "Your key has been removed on Project Ro-X\nIf you think this is a mistake contact {}".format(server.get_member(457516809940107264).mention),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.send_message(user, embed=embed)
@@ -398,7 +398,7 @@ async def removeid(ctx, id = None):
                         embed = discord.Embed(
                             title = "Admin Command",
                             description = "The user {} {}".format(user.mention, message),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -406,14 +406,14 @@ async def removeid(ctx, id = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -433,7 +433,7 @@ async def removekey(ctx, key = None):
 
                 embed = discord.Embed(
                     description = "The key {} {}".format(id, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -442,7 +442,7 @@ async def removekey(ctx, key = None):
                     embed = discord.Embed(
                         title = "Admin Command",
                         description = "The key {} {}".format(id, message),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.say(embed=embed)
@@ -450,14 +450,14 @@ async def removekey(ctx, key = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -485,7 +485,7 @@ async def premium(ctx, user: discord.Member = None, status = None):
 
                 embed = discord.Embed(
                     description = "The user {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -505,7 +505,7 @@ async def premium(ctx, user: discord.Member = None, status = None):
                     embed = discord.Embed(
                         title = "Admin Command",
                         description = "{} {}".format(user.mention, message),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.say(embed=embed)
@@ -513,14 +513,14 @@ async def premium(ctx, user: discord.Member = None, status = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -548,7 +548,7 @@ async def blacklist(ctx, user: discord.Member = None, status = None):
 
                 embed = discord.Embed(
                     description = "The user {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -604,7 +604,7 @@ async def blacklist(ctx, user: discord.Member = None, status = None):
                         embed = discord.Embed(
                             title = "Admin Command",
                             description = "{} {}".format(user.mention, message),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -612,7 +612,7 @@ async def blacklist(ctx, user: discord.Member = None, status = None):
                         embed = discord.Embed(
                             title = "Admin Command",
                             description = "{} {}".format(user.mention, newMessage),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -620,14 +620,14 @@ async def blacklist(ctx, user: discord.Member = None, status = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -655,7 +655,7 @@ async def blacklistid(ctx, id = None, status = None):
 
                 embed = discord.Embed(
                     description = "The user with the id {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -670,7 +670,7 @@ async def blacklistid(ctx, id = None, status = None):
                     if user == None:
                         embed = discord.Embed(
                             description = "The user with the id {} {}".format(user.mention, message),
-                            colour = discord.Colour.green()
+                            color = discord.Color.green()
                         )
 
                         await client.say(embed=embed)
@@ -725,7 +725,7 @@ async def blacklistid(ctx, id = None, status = None):
                             embed = discord.Embed(
                                 title = "Admin Command",
                                 description = "The user with the id {} {}".format(id, message),
-                                colour = discord.Colour.green()
+                                color = discord.Color.green()
                             )
 
                             await client.say(embed=embed)
@@ -733,7 +733,7 @@ async def blacklistid(ctx, id = None, status = None):
                             embed = discord.Embed(
                                 title = "Admin Command",
                                 description = "{} {}".format(user.mention, message),
-                                colour = discord.Colour.green()
+                                color = discord.Color.green()
                             )
 
                             await client.say(embed=embed)
@@ -742,7 +742,7 @@ async def blacklistid(ctx, id = None, status = None):
                             embed = discord.Embed(
                                 title = "Admin Command",
                                 description = "The user with the id {} {}".format(id, newMessage),
-                                colour = discord.Colour.green()
+                                color = discord.Color.green()
                             )
 
                             await client.say(embed=embed)
@@ -750,7 +750,7 @@ async def blacklistid(ctx, id = None, status = None):
                             embed = discord.Embed(
                                 title = "Admin Command",
                                 description = "{} {}".format(user.mention, newMessage),
-                                colour = discord.Colour.green()
+                                color = discord.Color.green()
                             )
 
                             await client.say(embed=embed)
@@ -758,14 +758,14 @@ async def blacklistid(ctx, id = None, status = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Colour.red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -786,7 +786,7 @@ async def info(ctx, user: discord.Member = None):
 
                 embed = discord.Embed(
                     description = "The user {} {}".format(user.mention, newMessage),
-                    colour = discord.Colour.red()
+                    color = discord.Color.red()
                 )
 
                 await client.say(embed=embed)
@@ -796,7 +796,7 @@ async def info(ctx, user: discord.Member = None):
 
                     embed = discord.Embed(
                         title = "{} | User info".format(user),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
                     embed.add_field(name = "Original User", value = "{}".format(ids[0]))
                     embed.add_field(name = "Last User", value = "{}".format(ids[1]))
@@ -805,7 +805,7 @@ async def info(ctx, user: discord.Member = None):
 
                     embed = discord.Embed(
                         description = "I have sent you a direct message with {}'s info".format(user.mention),
-                        colour = discord.Colour.green()
+                        color = discord.Color.green()
                     )
 
                     await client.say(embed=embed)
@@ -813,14 +813,14 @@ async def info(ctx, user: discord.Member = None):
             embed = discord.Embed(
                 title = "Error",
                 description = "The input text has too few parameters",
-                colour = discord.Color.dark_red()
+                color = discord.Color.red()
             )
 
             await client.say(embed=embed)
     else:
         embed = discord.Embed(
             description = "You don't have access to that command",
-            colour = discord.Colour.red()
+            color = discord.Color.red()
         )
 
         await client.say(embed=embed)
@@ -830,7 +830,7 @@ async def botinfo():
     embed = discord.Embed(
         title = "",
         description = "",
-        colour = discord.Colour.blue()
+        color = discord.Color.blue()
     )
     embed.set_footer(text="Coded in Python - Project Ro-X Bot")
     embed.set_image(url="https://cdn.discordapp.com/avatars/463762798703280128/8617488288a581842d016a3eda0e41c9.png?size=128")
