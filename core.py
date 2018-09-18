@@ -10,6 +10,7 @@ import urllib.request
 import random
 import string
 import sys
+import time
 
 TOKEN = os.getenv("TOKEN")
 client = commands.Bot(command_prefix = ".")
@@ -42,7 +43,9 @@ async def cmds(ctx):
             description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
-        await client.say(embed=embed)
+        message = await client.say(embed=embed)
+        time.sleep(3)
+        await client.delete_message(message)
         return
 
     embed = discord.Embed(
@@ -82,7 +85,9 @@ async def getkey(ctx, user: discord.Member = None):
                 description = "That command can only be used in {}".format(botchannel.mention),
                 color = discord.Color.red()
             )
-            await client.say(embed=embed)
+            message = await client.say(embed=embed)
+            time.sleep(3)
+            await client.delete_message(message)
             return
         fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
         mybytes = fp.read()
@@ -174,7 +179,9 @@ async def getroles(ctx):
             description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
-        await client.say(embed=embed)
+        message = await client.say(embed=embed)
+        time.sleep(3)
+        await client.delete_message(message)
         return
     fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
     mybytes = fp.read()
@@ -236,7 +243,9 @@ async def getscript(ctx):
             description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
-        await client.say(embed=embed)
+        message = await client.say(embed=embed)
+        time.sleep(3)
+        await client.delete_message(message)
         return
     if "Special" in [y.name for y in author.roles]:
         await client.send_file(author, "Project_Ro-X.lua")
