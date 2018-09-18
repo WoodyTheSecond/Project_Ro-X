@@ -39,7 +39,7 @@ async def cmds(ctx):
     if not channel.id == botchannel.id:
         await client.delete_message(ctx.message)
         embed = discord.Embed(
-            description = "You can only use this command in {}".format(botchannel.mention),
+            description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
         await client.say(embed=embed)
@@ -79,7 +79,7 @@ async def getkey(ctx, user: discord.Member = None):
         if not channel.id == botchannel.id:
             await client.delete_message(ctx.message)
             embed = discord.Embed(
-                description = "You can only use this command in {}".format(botchannel.mention),
+                description = "That command can only be used in {}".format(botchannel.mention),
                 color = discord.Color.red()
             )
             await client.say(embed=embed)
@@ -171,7 +171,7 @@ async def getroles(ctx):
     if not channel.id == botchannel.id:
         await client.delete_message(ctx.message)
         embed = discord.Embed(
-            description = "You can only use this command in {}".format(botchannel.mention),
+            description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
         await client.say(embed=embed)
@@ -233,7 +233,7 @@ async def getscript(ctx):
     if not channel.id == botchannel.id:
         await client.delete_message(ctx.message)
         embed = discord.Embed(
-            description = "You can only use this command in {}".format(botchannel.mention),
+            description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
         )
         await client.say(embed=embed)
@@ -879,7 +879,7 @@ async def botinfo(ctx):
     if not channel.id == botchannel.id:
         await client.delete_message(ctx.message)
         embed = discord.Embed(
-            description = "You can only use this command in {}".format(botchannel.mention)
+            description = "That command can only be used in {}".format(botchannel.mention)
         )
         await client.say(embed=embed)
         return
