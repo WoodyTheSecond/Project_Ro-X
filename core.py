@@ -10,7 +10,6 @@ import urllib.request
 import random
 import string
 import sys
-import time
 
 TOKEN = os.getenv("TOKEN")
 client = commands.Bot(command_prefix = ".")
@@ -44,7 +43,7 @@ async def cmds(ctx):
             color = discord.Color.red()
         )
         message = await client.say(embed=embed)
-        time.sleep(3)
+        await asyncio.sleep(3)
         await client.delete_message(message)
         return
 
@@ -86,7 +85,7 @@ async def getkey(ctx, user: discord.Member = None):
                 color = discord.Color.red()
             )
             message = await client.say(embed=embed)
-            time.sleep(3)
+            await asyncio.sleep(3)
             await client.delete_message(message)
             return
         fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
@@ -180,7 +179,7 @@ async def getroles(ctx):
             color = discord.Color.red()
         )
         message = await client.say(embed=embed)
-        time.sleep(3)
+        await asyncio.sleep(3)
         await client.delete_message(message)
         return
     fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
@@ -244,7 +243,7 @@ async def getscript(ctx):
             color = discord.Color.red()
         )
         message = await client.say(embed=embed)
-        time.sleep(3)
+        await asyncio.sleep(3)
         await client.delete_message(message)
         return
     if "Special" in [y.name for y in author.roles]:
