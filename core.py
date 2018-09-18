@@ -34,6 +34,15 @@ async def cmds(ctx):
     channel = ctx.message.channel
     author = ctx.message.author
     server = author.server
+    botchannel = server.get_channel("457899792530538517")
+
+    if not channel.id == botchannel.id:
+        await client.delete_message(ctx.message)
+        embed = discord.Embed(
+            description = "You can only use this command in {}".format(botchannel.mention)
+        )
+        await client.say(embed=embed)
+        return
 
     embed = discord.Embed(
         title = "Commands",
@@ -61,7 +70,17 @@ async def cmds(ctx):
 @client.command(pass_context=True)
 async def getkey(ctx, user: discord.Member = None):
     author = ctx.message.author
+    server = author.server
     if user == None:
+        botchannel = server.get_channel("457899792530538517")
+
+        if not channel.id == botchannel.id:
+            await client.delete_message(ctx.message)
+            embed = discord.Embed(
+                description = "You can only use this command in {}".format(botchannel.mention)
+            )
+            await client.say(embed=embed)
+            return
         fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
         mybytes = fp.read()
         message = mybytes.decode("utf8")
@@ -143,6 +162,15 @@ async def getkey(ctx, user: discord.Member = None):
 async def getroles(ctx):
     author = ctx.message.author
     server = author.server
+    botchannel = server.get_channel("457899792530538517")
+
+    if not channel.id == botchannel.id:
+        await client.delete_message(ctx.message)
+        embed = discord.Embed(
+            description = "You can only use this command in {}".format(botchannel.mention)
+        )
+        await client.say(embed=embed)
+        return
     fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
     mybytes = fp.read()
     message = mybytes.decode("utf8")
@@ -193,6 +221,16 @@ async def getroles(ctx):
 @client.command(pass_context=True)
 async def getscript(ctx):
     author = ctx.message.author
+    server = author.server
+    botchannel = server.get_channel("457899792530538517")
+
+    if not channel.id == botchannel.id:
+        await client.delete_message(ctx.message)
+        embed = discord.Embed(
+            description = "You can only use this command in {}".format(botchannel.mention)
+        )
+        await client.say(embed=embed)
+        return
     if "Special" in [y.name for y in author.roles]:
         await client.send_file(author, "Project_Ro-X.lua")
         embed = discord.Embed(
@@ -825,8 +863,19 @@ async def info(ctx, user: discord.Member = None):
 
         await client.say(embed=embed)
 
-@client.command()
-async def botinfo():
+@client.command(pass_context=True)
+async def botinfo(ctx):
+    author = ctx.message.author
+    server = author.server
+    botchannel = server.get_channel("457899792530538517")
+
+    if not channel.id == botchannel.id:
+        await client.delete_message(ctx.message)
+        embed = discord.Embed(
+            description = "You can only use this command in {}".format(botchannel.mention)
+        )
+        await client.say(embed=embed)
+        return
     embed = discord.Embed(
         title = "",
         description = "",
