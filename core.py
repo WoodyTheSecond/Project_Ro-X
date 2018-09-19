@@ -29,15 +29,14 @@ async def on_member_join(member):
     howtobuychannel = server.get_channel("457895087104327680")
     await client.send_message(member, "Welcome to **{}** if you want to buy the script read {}".format(server.name, howtobuychannel.mention))
 
-@client.command(pass_context=True)
-async def cmds(ctx):
-    channel = ctx.message.channel
-    author = ctx.message.author
-    server = author.server
+async def isBotChannel(message: discord.Message, channel: discord.Channel):
+    server = channel.server
     botchannel = server.get_channel("457899792530538517")
 
-    if not channel.id == botchannel.id:
-        await client.delete_message(ctx.message)
+    if channel.id == botchannel.id:
+        return True
+    else:
+        await client.delete_message(message)
         embed = discord.Embed(
             description = "That command can only be used in {}".format(botchannel.mention),
             color = discord.Color.red()
@@ -45,30 +44,36 @@ async def cmds(ctx):
         message = await client.say(embed=embed)
         await asyncio.sleep(3)
         await client.delete_message(message)
-        return
+        return False
 
-    embed = discord.Embed(
-        title = "Commands",
-        description = "",
-        color = discord.Color.blue()
-    )
-    embed.add_field(name="getkey", value="Get your key", inline=False)
-    embed.add_field(name="getroles", value="Get your roles", inline=False)
-    embed.add_field(name="getscript", value="Get the script", inline=False)
-    embed.add_field(name="botinfo", value="Shows the bot info", inline=False)
+@client.command(pass_context=True)
+async def cmds(ctx):
+    channel = ctx.message.channel
+    author = ctx.message.author
+    server = author.server
+    if await isBotChannel(ctx.message, channel) == True:
+        embed = discord.Embed(
+            title = "Commands",
+            description = "",
+            color = discord.Color.blue()
+        )
+        embed.add_field(name="getkey", value="Get your key", inline=False)
+        embed.add_field(name="getroles", value="Get your roles", inline=False)
+        embed.add_field(name="getscript", value="Get the script", inline=False)
+        embed.add_field(name="botinfo", value="Shows the bot info", inline=False)
 
-    if "457518915061284865" in [y.id for y in author.roles]:
-        embed.add_field(name="getkey @user", value="Get users key", inline=False)
-        embed.add_field(name="whitelist @user true/false", value="Whitelists user premium(true/false)", inline=False)
-        embed.add_field(name="remove @user", value="Remove users key", inline=False)
-        embed.add_field(name="removeid id", value="Remove the user with the id's key", inline=False)
-        embed.add_field(name="removekey key", value="Remove the key", inline=False)
-        embed.add_field(name="premium @user true/false", value="Set users premium to true/false", inline=False)
-        embed.add_field(name="blacklist @user true/false", value="Set users blacklist to true/false", inline=False)
-        embed.add_field(name="blacklistid id", value="Set the user with the id's blacklist to true/false", inline=False)
-        embed.add_field(name='info @user', value="Get users info", inline=False)
+        if "457518915061284865" in [y.id for y in author.roles]:
+            embed.add_field(name="getkey @user", value="Get users key", inline=False)
+            embed.add_field(name="whitelist @user true/false", value="Whitelists user premium(true/false)", inline=False)
+            embed.add_field(name="remove @user", value="Remove users key", inline=False)
+            embed.add_field(name="removeid id", value="Remove the user with the id's key", inline=False)
+            embed.add_field(name="removekey key", value="Remove the key", inline=False)
+            embed.add_field(name="premium @user true/false", value="Set users premium to true/false", inline=False)
+            embed.add_field(name="blacklist @user true/false", value="Set users blacklist to true/false", inline=False)
+            embed.add_field(name="blacklistid id", value="Set the user with the id's blacklist to true/false", inline=False)
+            embed.add_field(name='info @user', value="Get users info", inline=False)
 
-    await client.say(embed=embed)
+        await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def getkey(ctx, user: discord.Member = None):
