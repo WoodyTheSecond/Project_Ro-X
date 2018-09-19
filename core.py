@@ -81,46 +81,35 @@ async def getkey(ctx, user: discord.Member = None):
     author = ctx.message.author
     server = author.server
     if user == None:
-        botchannel = server.get_channel("457899792530538517")
+        if await isBotChannel(ctx.message, channel) == True:
+            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
+            mybytes = fp.read()
+            message = mybytes.decode("utf8")
+            fp.close()
+            if "error" in message:
+                newMessage = message.replace("error", "")
 
-        if not channel.id == botchannel.id:
-            await client.delete_message(ctx.message)
-            embed = discord.Embed(
-                description = "That command can only be used in {}".format(botchannel.mention),
-                color = discord.Color.red()
-            )
-            message = await client.say(embed=embed)
-            await asyncio.sleep(3)
-            await client.delete_message(message)
-            return
-        fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
-        mybytes = fp.read()
-        message = mybytes.decode("utf8")
-        fp.close()
-        if "error" in message:
-            newMessage = message.replace("error", "")
+                embed = discord.Embed(
+                    description = "{}".format(newMessage),
+                    color = discord.Color.red()
+                )
 
-            embed = discord.Embed(
-                description = "{}".format(newMessage),
-                color = discord.Color.red()
-            )
+                await client.say(embed=embed)
+            else:
+                embed = discord.Embed(
+                    title = "Your key",
+                    description = message,
+                    color = discord.Color.green()
+                )
 
-            await client.say(embed=embed)
-        else:
-            embed = discord.Embed(
-                title = "Your key",
-                description = message,
-                color = discord.Color.green()
-            )
+                await client.send_message(author, embed=embed)
 
-            await client.send_message(author, embed=embed)
+                embed = discord.Embed(
+                    description = "I have sent you a direct message with your key",
+                    color = discord.Color.green()
+                )
 
-            embed = discord.Embed(
-                description = "I have sent you a direct message with your key",
-                color = discord.Color.green()
-            )
-
-            await client.say(embed=embed)
+                await client.say(embed=embed)
     else:
         if "Ro-X Development Team" in [y.name for y in author.roles]:
             if user:
@@ -175,96 +164,74 @@ async def getroles(ctx):
     channel = ctx.message.channel
     author = ctx.message.author
     server = author.server
-    botchannel = server.get_channel("457899792530538517")
+    if await isBotChannel(ctx.message, channel) == True:
+        fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
+        mybytes = fp.read()
+        message = mybytes.decode("utf8")
+        fp.close()
+        if "error" in message:
+            newMessage = message.replace("error", "")
 
-    if not channel.id == botchannel.id:
-        await client.delete_message(ctx.message)
-        embed = discord.Embed(
-            description = "That command can only be used in {}".format(botchannel.mention),
-            color = discord.Color.red()
-        )
-        message = await client.say(embed=embed)
-        await asyncio.sleep(3)
-        await client.delete_message(message)
-        return
-    fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
-    mybytes = fp.read()
-    message = mybytes.decode("utf8")
-    fp.close()
-    if "error" in message:
-        newMessage = message.replace("error", "")
+            embed = discord.Embed(
+                description = "{}".format(newMessage),
+                color = discord.Color.red()
+            )
 
-        embed = discord.Embed(
-            description = "{}".format(newMessage),
-            color = discord.Color.red()
-        )
+            await client.say(embed=embed)
+        else:
+            if "," in message:
+                roles = message.split(",")
 
-        await client.say(embed=embed)
-    else:
-        if "," in message:
-            roles = message.split(",")
-
-            for role in roles:
-                if role == "Special":
+                for role in roles:
+                    if role == "Special":
+                        if "Special" not in [y.name for y in author.roles]:
+                            for role in server.roles:
+                                if str(role) == "Special":
+                                    await client.add_roles(author, role)
+                    elif role == "Premium":
+                        if "Ro-X Premium" not in [y.name for y in author.roles]:
+                            for role in server.roles:
+                                if str(role) == "Ro-X Premium":
+                                    await client.add_roles(author, role)
+            else:
+                if message == "Special":
                     if "Special" not in [y.name for y in author.roles]:
                         for role in server.roles:
                             if str(role) == "Special":
                                 await client.add_roles(author, role)
-                elif role == "Premium":
-                    if "Ro-X Premium" not in [y.name for y in author.roles]:
+                else:
+                    if "Member" not in [y.name for y in author.roles]:
                         for role in server.roles:
-                            if str(role) == "Ro-X Premium":
+                            if str(role) == "Member":
                                 await client.add_roles(author, role)
-        else:
-            if message == "Special":
-                if "Special" not in [y.name for y in author.roles]:
-                    for role in server.roles:
-                        if str(role) == "Special":
-                            await client.add_roles(author, role)
-            else:
-                if "Member" not in [y.name for y in author.roles]:
-                    for role in server.roles:
-                        if str(role) == "Member":
-                            await client.add_roles(author, role)
 
-        embed = discord.Embed(
-            description = "You have been gives your roles",
-            color = discord.Color.green()
-        )
+            embed = discord.Embed(
+                description = "You have been gives your roles",
+                color = discord.Color.green()
+            )
 
-        await client.say(embed=embed)
+            await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def getscript(ctx):
     channel = ctx.message.channel
     author = ctx.message.author
     server = author.server
-    botchannel = server.get_channel("457899792530538517")
+    if await isBotChannel(ctx.message, channel) == True:
+        if "Special" in [y.name for y in author.roles]:
+            await client.send_file(author, "Project_Ro-X.lua")
+            embed = discord.Embed(
+                description = "I've sent you the script in a direct message",
+                color = discord.Color.green()
+            )
+            await client.say(embed=embed)
+        else:
+            embed = discord.Embed(
+                description = "You don't have access to that command",
+                color = discord.Color.red()
+            )
 
-    if not channel.id == botchannel.id:
-        await client.delete_message(ctx.message)
-        embed = discord.Embed(
-            description = "That command can only be used in {}".format(botchannel.mention),
-            color = discord.Color.red()
-        )
-        message = await client.say(embed=embed)
-        await asyncio.sleep(3)
-        await client.delete_message(message)
-        return
-    if "Special" in [y.name for y in author.roles]:
-        await client.send_file(author, "Project_Ro-X.lua")
-        embed = discord.Embed(
-            description = "I've sent you the script in a direct message",
-            color = discord.Color.green()
-        )
-        await client.say(embed=embed)
-    else:
-        embed = discord.Embed(
-            description = "You don't have access to that command",
-            color = discord.Color.red()
-        )
-
-        await client.say(embed=embed)
+            await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def whitelist(ctx, user: discord.Member = None, premium = None):
