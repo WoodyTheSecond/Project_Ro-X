@@ -37,6 +37,14 @@ async def isBotChannel(message: discord.Message, channel: discord.Channel):
             botchannel = ch
 
     if botchannel == None:
+        await client.delete_message(message)
+        embed = discord.Embed(
+            description = "There is not bot commands channel. Please make a channel with one of these names\n\nbot-chat\nbot_chat\nbot-commands\nbot_commands",
+            color = discord.Color.red()
+        )
+        message = await client.say(embed=embed)
+        await asyncio.sleep(3)
+        await client.delete_message(message)
         return False
     else:
         if channel.id == botchannel.id:
