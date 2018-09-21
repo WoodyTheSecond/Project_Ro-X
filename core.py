@@ -31,20 +31,26 @@ async def on_member_join(member):
 
 async def isBotChannel(message: discord.Message, channel: discord.Channel):
     server = channel.server
-    botchannel = server.get_channel("457899792530538517")
+    botchannel = None
+    for ch in server.channels:
+        if ch.name == "bot-chat" or ch.name == "bot_chat" or ch.name == "bot-commands" or ch.name == "bot_commands":
+            botchannel = ch
 
-    if channel.id == botchannel.id:
-        return True
-    else:
-        await client.delete_message(message)
-        embed = discord.Embed(
-            description = "That command can only be used in {}".format(botchannel.mention),
-            color = discord.Color.red()
-        )
-        message = await client.say(embed=embed)
-        await asyncio.sleep(3)
-        await client.delete_message(message)
+    if botchannel == None:
         return False
+    else:
+        if channel.id == botchannel.id:
+            return True
+        else:
+            await client.delete_message(message)
+            embed = discord.Embed(
+                description = "That command can only be used in {}".format(botchannel.mention),
+                color = discord.Color.red()
+            )
+            message = await client.say(embed=embed)
+            await asyncio.sleep(3)
+            await client.delete_message(message)
+            return False
 
 @client.command(pass_context=True)
 async def cmds(ctx):
