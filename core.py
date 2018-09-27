@@ -78,28 +78,19 @@ async def cmds(ctx):
         embed.add_field(name="getkey", value="Get your key", inline=False)
         embed.add_field(name="getroles", value="Get your roles", inline=False)
         embed.add_field(name="getscript", value="Get the script", inline=False)
-        embed.add_field(
-            name="botinfo", value="Shows the bot info", inline=False)
+        embed.add_field(name="botinfo", value="Shows the bot info", inline=False)
 
         if "457518915061284865" in [y.id for y in author.roles]:
-            embed.add_field(name="getkey @user",
-                            value="Get users key", inline=False)
-            embed.add_field(name="whitelist @user true/false",
-                            value="Whitelists user premium(true/false)", inline=False)
-            embed.add_field(name="remove @user",
-                            value="Remove users key", inline=False)
-            embed.add_field(
-                name="removeid id", value="Remove the user with the id's key", inline=False)
-            embed.add_field(name="removekey key",
-                            value="Remove the key", inline=False)
-            embed.add_field(name="premium @user true/false",
-                            value="Set users premium to true/false", inline=False)
-            embed.add_field(name="blacklist @user true/false",
-                            value="Set users blacklist to true/false", inline=False)
-            embed.add_field(
-                name="blacklistid id", value="Set the user with the id's blacklist to true/false", inline=False)
-            embed.add_field(name='info @user',
-                            value="Get users info", inline=False)
+            embed.add_field(name="getkey user",value="Get users key", inline=False)
+            embed.add_field(name="getkeyid id", value="Get id's key", inline=False)
+            embed.add_field(name="whitelist user true/false",value="Whitelists user premium(true/false)", inline=False)
+            embed.add_field(name="remove user",value="Remove users key", inline=False)
+            embed.add_field(name="removeid id", value="Remove the user with the id's key", inline=False)
+            embed.add_field(name="removekey key",value="Remove the key", inline=False)
+            embed.add_field(name="premium user true/false",value="Set users premium to true/false", inline=False)
+            embed.add_field(name="blacklist user true/false",value="Set users blacklist to true/false", inline=False)
+            embed.add_field(name="blacklistid id", value="Set the user with the id's blacklist to true/false", inline=False)
+            embed.add_field(name='info user', value="Get users info", inline=False)
 
         await client.say(embed=embed)
 
