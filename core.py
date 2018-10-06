@@ -100,8 +100,7 @@ async def getkey(ctx, user: discord.Member = None):
     author = ctx.message.author
     if user == None:
         if await isBotChannel(ctx.message, channel) == True:
-            fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
+            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -132,8 +131,7 @@ async def getkey(ctx, user: discord.Member = None):
     else:
         if "Ro-X Development Team" in [y.name for y in author.roles]:
             if user:
-                fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -303,16 +301,14 @@ async def getscript(ctx):
 
 
 @client.command(pass_context=True)
-async def whitelist(ctx, user: discord.Member = None, premium=None):
+async def whitelist(ctx, user: discord.Member = None, premium: str = None):
     author = ctx.message.author
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if user != None and premium != None:
-            key = "".join(random.choice(string.ascii_lowercase +
-                                        string.ascii_uppercase + string.digits) for _ in range(50))
+            key = "".join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
-            fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=whitelist&targetuserid={}&key={}&premium={}".format(author.id, user.id, key, premium))
+            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=whitelist&targetuserid={}&key={}&premium={}".format(author.id, user.id, key, premium))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -328,23 +324,19 @@ async def whitelist(ctx, user: discord.Member = None, premium=None):
                 await client.say(embed=embed)
             else:
                 if "notadmin" not in message:
-                    if "Member" in [y.name for y in user.roles]:
-                        for role in server.roles:
-                            if str(role) == "Member":
-                                await client.remove_roles(user, role)
-                    if "Special" not in [y.name for y in user.roles]:
-                        for role in server.roles:
-                            if str(role) == "Special":
-                                await client.add_roles(user, role)
-                    if premium == "true":
-                        if "Ro-X Premium" not in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Ro-X Premium":
-                                    await client.add_roles(user, role)
+                    roles_to_give = []
+                    for role in server.roles:
+                        if premium == "true":
+                            if role.name == "Special" or role.name == "Ro-X Premium":
+                                roles_to_give.append(role)
+                        else:
+                            if role.name == "Special":
+                                roles_to_give.append(role)
+
+                    await client.replace_roles(user, *roles_to_give)
 
                     embed = discord.Embed(
-                        description="You have been whitelisted on Project Ro-X\nYour key is: `{}`\nIf you lose the script you can always use the command .getscript to get the script\nHere is the script".format(
-                            key),
+                        description="You have been whitelisted on Project Ro-X\nYour key is: `{}`\nIf you lose the script you can always use the command .getscript to get the script\nHere is the script".format(key),
                         color=0x00FF00
                     )
 
@@ -398,18 +390,12 @@ async def remove(ctx, user: discord.Member = None):
                 await client.say(embed=embed)
             else:
                 if "notadmin" not in message:
-                    if "Member" not in [y.name for y in user.roles]:
-                        for role in server.roles:
-                            if str(role) == "Member":
-                                await client.add_roles(user, role)
-                    if "Special" in [y.name for y in user.roles]:
-                        for role in server.roles:
-                            if str(role) == "Special":
-                                await client.remove_roles(user, role)
-                    if "Ro-X Premium" in [y.name for y in user.roles]:
-                        for role in server.roles:
-                            if str(role) == "Ro-X Premium":
-                                await client.remove_roles(user, role)
+                    roles_to_give = []
+                    for role in server.roles:
+                        if role.name == "Member":
+                            roles_to_give.append(role)
+
+                    await client.replace_roles(user, roles_to_give)
 
                     embed = discord.Embed(
                         description="Your key has been removed on Project Ro-X\nIf you think this is a mistake contact {}".format(
@@ -449,8 +435,7 @@ async def removeid(ctx, id=None):
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if id != None:
-            fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, id))
+            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -481,18 +466,12 @@ async def removeid(ctx, id=None):
 
                         await client.say(embed=embed)
                     else:
-                        if "Member" not in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Member":
-                                    await client.add_roles(user, role)
-                        if "Special" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Special":
-                                    await client.remove_roles(user, role)
-                        if "Ro-X Premium" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Ro-X Premium":
-                                    await client.remove_roles(user, role)
+                        roles_to_give = []
+                        for role in server.roles:
+                            if role.name == "Member":
+                                roles_to_give.append(role)
+
+                        await client.replace_roles(user, roles_to_give)
 
                         embed = discord.Embed(
                             description="Your key has been removed on Project Ro-X\nIf you think this is a mistake contact {}".format(
@@ -580,14 +559,12 @@ async def premium(ctx, user: discord.Member = None, status=None):
         if user != None and status != None:
             message = None
             if status == "true":
-                fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=givepremium&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=givepremium&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
             else:
-                fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=removepremium&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=removepremium&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -673,50 +650,23 @@ async def blacklist(ctx, user: discord.Member = None, status=None):
                 if "notadmin" not in message:
                     newMessage = None
                     if status == "true":
-                        if "Member" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Member":
-                                    await client.remove_roles(user, role)
-                        if "Special" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Special":
-                                    await client.remove_roles(user, role)
-                        if "Ro-X Premium" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Ro-X Premium":
-                                    await client.remove_roles(user, role)
-                        if "Muted" not in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Muted":
-                                    await client.add_roles(user, role)
-                        if "Blacklisted" not in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Blacklisted":
-                                    await client.add_roles(user, role)
-                    else:
-                        if "Member" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Member":
-                                    await client.remove_roles(user, role)
-                        if "Special" not in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Special":
-                                    await client.add_roles(user, role)
-                        if "premium" in message:
-                            newMessage = message.replace("premium", "")
-                            if "Ro-X Premium" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Ro-X Premium":
-                                        await client.remove_roles(user, role)
-                        if "Muted" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Muted":
-                                    await client.remove_roles(user, role)
-                        if "Blacklisted" in [y.name for y in user.roles]:
-                            for role in server.roles:
-                                if str(role) == "Blacklisted":
-                                    await client.remove_roles(user, role)
+                        roles_to_give = []
+                        for role in server.roles:
+                            if role.name == "Muted" or role.name == "Blacklisted":
+                                roles_to_give.append(role)
 
+                        await client.replace_roles(user, *roles_to_give)
+                    else:
+                        roles_to_give = []
+                        for role in server.roles:
+                            if role.name == "Special":
+                                roles_to_give.append(role)
+                            elif role.name == "Ro-X Premium":
+                                if "premium" in message:
+                                    newMessage = message.replace("premium", "")
+                                    roles_to_give.append(role)
+
+                        client.replace_roles(user, *roles_to_give)
                     if newMessage == None:
                         embed = discord.Embed(
                             title="Admin Command",
@@ -799,56 +749,29 @@ async def blacklistid(ctx, id=None, status=None):
                         await client.say(embed=embed)
                     else:
                         if status == "true":
-                            if "Member" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Member":
-                                        await client.remove_roles(user, role)
-                            if "Special" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Special":
-                                        await client.remove_roles(user, role)
-                            if "Ro-X Premium" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Ro-X Premium":
-                                        await client.remove_roles(user, role)
-                            if "Muted" not in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Muted":
-                                        await client.add_roles(user, role)
-                            if "Blacklisted" not in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Blacklisted":
-                                        await client.add_roles(user, role)
+                            roles_to_give = []
+                            for role in server.roles:
+                                if role.name == "Muted" or role.name == "Blacklisted":
+                                    roles_to_give.append(role)
+
+                            await client.replace_roles(user, *roles_to_give)
                         else:
-                            if "Member" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Member":
-                                        await client.remove_roles(user, role)
-                            if "Special" not in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Special":
-                                        await client.add_roles(user, role)
-                            if "premium" in message:
-                                newMessage = message.replace("premium", "")
-                                if "Ro-X Premium" in [y.name for y in user.roles]:
-                                    for role in server.roles:
-                                        if str(role) == "Ro-X Premium":
-                                            await client.remove_roles(user, role)
-                            if "Muted" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Muted":
-                                        await client.remove_roles(user, role)
-                            if "Blacklisted" in [y.name for y in user.roles]:
-                                for role in server.roles:
-                                    if str(role) == "Blacklisted":
-                                        await client.remove_roles(user, role)
+                            roles_to_give = []
+                            for role in server.roles:
+                                if role.name == "Special":
+                                    roles_to_give.append(role)
+                                elif role.name == "Ro-X Premium":
+                                    if "premium" in message:
+                                        newMessage = message.replace("premium", "")
+                                        roles_to_give.append(role)
+
+                            client.replace_roles(user, *roles_to_give)
 
                     if newMessage == None:
                         if user == None:
                             embed = discord.Embed(
                                 title="Admin Command",
-                                description="The user with the id {} {}".format(
-                                    id, message),
+                                description="The user with the id {} {}".format(id, message),
                                 color=0x00FF00
                             )
 
@@ -856,8 +779,7 @@ async def blacklistid(ctx, id=None, status=None):
                         else:
                             embed = discord.Embed(
                                 title="Admin Command",
-                                description="{} {}".format(
-                                    user.mention, message),
+                                description="{} {}".format(user.mention, message),
                                 color=0x00FF00
                             )
 
