@@ -1006,7 +1006,7 @@ async def info(ctx, user: discord.Member = None):
 
 @client.command(pass_context=True)
 async def botinfo(ctx):
-    if isBotChannel(ctx.message, ctx.message.channel) == True:
+    if await isBotChannel(ctx.message, ctx.message.channel) == True:
         embed = discord.Embed(
             title="",
             description="",
