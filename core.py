@@ -287,32 +287,35 @@ async def getroles(ctx):
             try:
                 if "," in message:
                     roles = message.split(",")
+                    roles_to_give = []
 
                     for role in roles:
                         if role == "Special":
                             if "Special" not in [y.name for y in author.roles]:
                                 for role in server.roles:
                                     if str(role) == "Special":
-                                        await client.add_roles(author, role)
+                                        roles_to_give.append(role)
                         elif role == "Premium":
                             if "Ro-X Premium" not in [y.name for y in author.roles]:
                                 for role in server.roles:
                                     if str(role) == "Ro-X Premium":
-                                        await client.add_roles(author, role)
+                                        roles_to_give.append(role)
                 else:
                     if message == "Special":
                         if "Special" not in [y.name for y in author.roles]:
                             for role in server.roles:
                                 if str(role) == "Special":
-                                    await client.add_roles(author, role)
+                                    roles_to_give.append(role)
                     else:
                         if "Member" not in [y.name for y in author.roles]:
                             for role in server.roles:
                                 if str(role) == "Member":
-                                    await client.add_roles(author, role)
+                                    roles_to_give.append(role)
+
+                await client.replace_roles(author, *roles_to_give)
 
                 embed = discord.Embed(
-                    description="You have been gives your roles",
+                    description="You have been given your roles",
                     color=0x00FF00
                 )
 
