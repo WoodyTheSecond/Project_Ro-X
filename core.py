@@ -269,8 +269,7 @@ async def getroles(ctx):
     author = ctx.message.author
     server = author.server
     if await isBotChannel(ctx.message, channel) == True:
-        fp = urllib.request.urlopen(
-            "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
+        fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
         mybytes = fp.read()
         message = mybytes.decode("utf8")
         fp.close()
