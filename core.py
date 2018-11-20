@@ -115,7 +115,7 @@ async def getkey(ctx, user: discord.Member = None):
     author = ctx.message.author
     if user == None:
         if await isBotChannel(ctx.message, channel) == True:
-            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getkey".format(author.id))
+            fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=getkey".format(author.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -154,7 +154,7 @@ async def getkey(ctx, user: discord.Member = None):
     else:
         if "Ro-X Development Team" in [y.name for y in author.roles]:
             if user:
-                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -181,8 +181,7 @@ async def getkey(ctx, user: discord.Member = None):
 
                             embed = discord.Embed(
                                 title="Admin Command",
-                                description="I have sent you a direct message with {}'s key".format(
-                                    user.mention),
+                                description="I have sent you a direct message with {}'s key".format(user.mention),
                                 color=0x00FF00
                             )
 
@@ -215,7 +214,7 @@ async def getkey(ctx, user: discord.Member = None):
 async def getkeyid(ctx, id=None):
     if id != None:
         author = ctx.message.author
-        fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, id))
+        fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=admingetkey&targetuserid={}".format(author.id, id))
         mybytes = fp.read()
         message = mybytes.decode("utf8")
         fp.close()
@@ -269,7 +268,7 @@ async def getroles(ctx):
     author = ctx.message.author
     server = author.server
     if await isBotChannel(ctx.message, channel) == True:
-        fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getroles".format(author.id))
+        fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=getroles".format(author.id))
         mybytes = fp.read()
         message = mybytes.decode("utf8")
         fp.close()
@@ -364,7 +363,7 @@ async def whitelist(ctx, user: discord.Member = None, premium: str = None):
         if user != None and premium != None:
             key = "".join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(50))
 
-            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=whitelist&targetuserid={}&key={}&premium={}".format(author.id, user.id, key, premium))
+            fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=whitelist&targetuserid={}&key={}&premium={}".format(author.id, user.id, key, premium))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -438,7 +437,7 @@ async def remove(ctx, user: discord.Member = None):
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if user != None:
             fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, user.id))
+                "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, user.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -507,7 +506,7 @@ async def removeid(ctx, id=None):
     server = author.server
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if id != None:
-            fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, id))
+            fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=remove&targetuserid={}".format(author.id, id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -592,7 +591,7 @@ async def removekey(ctx, key=None):
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if key != None:
             fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=removekey&targetkey={}".format(author.id, key))
+                "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=removekey&targetkey={}".format(author.id, key))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -639,12 +638,12 @@ async def premium(ctx, user: discord.Member = None, status=None):
         if user != None and status != None:
             message = None
             if status == "true":
-                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=givepremium&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=givepremium&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
             else:
-                fp = urllib.request.urlopen("http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=removepremium&targetuserid={}".format(author.id, user.id))
+                fp = urllib.request.urlopen("https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=removepremium&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -713,13 +712,13 @@ async def blacklist(ctx, user: discord.Member = None, status=None):
             message = None
             if status == "true":
                 fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, user.id))
+                    "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
             else:
                 fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=unblacklist&targetuserid={}".format(author.id, user.id))
+                    "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=unblacklist&targetuserid={}".format(author.id, user.id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -814,13 +813,13 @@ async def blacklistid(ctx, id=None, status=None):
             message = None
             if status == "true":
                 fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, id))
+                    "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=blacklist&targetuserid={}".format(author.id, id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
             else:
                 fp = urllib.request.urlopen(
-                    "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=unblacklist&targetuserid={}".format(author.id, id))
+                    "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=unblacklist&targetuserid={}".format(author.id, id))
                 mybytes = fp.read()
                 message = mybytes.decode("utf8")
                 fp.close()
@@ -946,7 +945,7 @@ async def info(ctx, user: discord.Member = None):
     if "Ro-X Development Team" in [y.name for y in author.roles]:
         if user != None:
             fp = urllib.request.urlopen(
-                "http://woodyproducts.000webhostapp.com/projectroxadmin.php?userid={}&action=getinfo&targetuserid={}".format(author.id, user.id))
+                "https://woodyproducts.casp9536.aspitcloud.dk/projectroxadmin.php?userid={}&action=getinfo&targetuserid={}".format(author.id, user.id))
             mybytes = fp.read()
             message = mybytes.decode("utf8")
             fp.close()
@@ -1015,8 +1014,8 @@ async def botinfo(ctx):
             color=0x0000FF
         )
         embed.set_footer(text="Coded in Python - Project Ro-X Bot")
-        embed.set_image(url="https://cdn.discordapp.com/avatars/463762798703280128/8617488288a581842d016a3eda0e41c9.png?size=128")
-        embed.set_author(name="Bot Information",icon_url="https://i.gyazo.com/3484baf8ba09ae77cc6f7e06bbd2eacb.jpg")
+        embed.set_image(url="httpss://cdn.discordapp.com/avatars/463762798703280128/8617488288a581842d016a3eda0e41c9.png?size=128")
+        embed.set_author(name="Bot Information",icon_url="httpss://i.gyazo.com/3484baf8ba09ae77cc6f7e06bbd2eacb.jpg")
         embed.add_field(name="Bot Name", value="Project Ro-X", inline=False)
         embed.add_field(name="Creator", value="Woody#3599", inline=False)
         embed.add_field(name="Version", value="0.5", inline=False)

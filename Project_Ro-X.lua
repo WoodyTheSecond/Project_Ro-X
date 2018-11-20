@@ -1,5 +1,5 @@
 local function gethttp(src)
-	if validfgwindow then
+	if validfgwindow == true then
 		return httpget(src, game.PlaceId)
 	elseif HttpGet then
 		return HttpGet(src)
